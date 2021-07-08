@@ -1,14 +1,24 @@
 {
   "name": "git-cli",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "gitcli",
+  "bin": {
+    "npm-cli-package": "src/index.js"
+  },
+  "repository": {
+      "type": "git",
+      "url": "https://github.com/HomyeeKing/git-cli"
+  },
+  "homepage":"https://github.com/HomyeeKing/git-cli#readme",
+  "bugs": {
+    "url": "https://github.com/HomyeeKing/git-cli/issues"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "cac": "^6.7.3",
     "prompts": "^2.4.1"
