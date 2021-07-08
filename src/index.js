@@ -5,10 +5,72 @@ const prompts = require('prompts')
 const os = require('os')
 const cli = cac('git-cli')
 
-const cwd = process.cwd()
 
 const isWin = os.platform() === 'win32'
 const homePath = isWin?process.env.USERPROFILE:process.env.HOME
+
+
+console.log(`detect that your are on ${isWin?'Windows':'Mac'}`);
+
+// check if there's exist a file contain git account info 
+const gitAccountPath = path.resolve(homePath,'.git-account')
+
+const gitAcQues =     [
+    {
+    type:'text',
+    name: 'githubName',
+    message:"Please input github user name",
+    validate:value=>value===''?'required!':true
+  },
+    {
+    type:'text',
+    name: 'githubEmail',
+    message:"Please input github user email",
+    validate:value=>value===''?'required!':true
+  },
+    {
+    type:'text',
+    name: 'gitlabName',
+    message:"Please input gitlab user name",
+    validate:value=>value===''?'required!':true
+  },
+    {
+    type:'text',
+    name: 'gitlabEmail',
+    message:"Please input gitlab user email",
+    validate:value=>value===''?'required!':true
+  } 
+]
+if(!fs.existsSync(gitAccountPath)){
+   createGitAcFile()
+}
+cli.command('')
+.option('-u, --update','update git info')
+.action((options)=>{
+    if(options.u){
+        createGitAcFile()
+    }
+})
+
+
+
+async function createGitAcFile(){
+    const { githubEmail,githubName,gitlabEmail,gitlabName } =  await prompts( gitAcQues)
+    const str = `
+    githubName=${githubName}
+    githubEmail=${githubEmail}
+    gitlabName=${gitlabName}
+    gitlabEmail=${gitlabEmail}`.trim()
+    fs.writeFileSync(gitAccountPath,str)
+}
+
+if(isWin){
+// TODO: powershell or bash , this is a question
+}else{
+    copy('./templates',homePath)
+}
+
+
 //#region utils
 /**
  *
@@ -57,10 +119,4 @@ function emptyDir(dir) {
   //#endregion
 
 
-console.log(`detect that your are on ${isWin?'Windows':'Mac'}`);
-
-if(isWin){
-
-}else{
-    copy('./templates',homePath)
-}
+  cli.parse()
