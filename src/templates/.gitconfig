@@ -1,0 +1,21 @@
+[user]
+# default info
+	name = wanghongye
+	email = wanghongye@kuaishou.com
+# Please adapt and uncomment the following lines:
+#	name =  Homyee King
+#	email = 1224125412@qq.com
+[alias]
+    cmm = commit -m
+    st = status
+    pl = pull
+    ps = push
+    sw = switch
+    swc = switch -c
+    br  = branch
+    l  = log --stat
+	lp = log  --all --decorate --oneline --graph
+    g = git
+
+[init]
+	templatedir = /Users/wanghongye/.git-templates
