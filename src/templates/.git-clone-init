@@ -1,0 +1,17 @@
+case "$url" in
+    *@github.com:* ) 
+        echo "github"
+        email="HomyeeKing@gmail.com"
+        name="HomyeeKing"
+        ;;
+    *@gitlab.*.com:* )
+        echo "gitlab"
+        email="why336809@alibaba-inc.com"
+        name="mangyuan"
+        ;;
+    *) 
+        echo "not gitlab or github url, email and name will be set  empty"
+        email=""
+        name=""
+        ;;
+esac
